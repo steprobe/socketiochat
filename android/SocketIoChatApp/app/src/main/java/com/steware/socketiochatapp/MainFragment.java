@@ -4,6 +4,7 @@ package com.steware.socketiochatapp;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     private TextView mMessages;
 
     public MainFragment() {
+        Log.e("STEO", "MainFrgmanr creation");
     }
 
     public static MainFragment newInstance() {
@@ -28,12 +30,16 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mServiceProxy = new WebSocketServiceProxy(getActivity(), this);
+        Log.e("STEO", "OnAttach fraggle");
+
+        DependencyProvider depProv = (DependencyProvider)activity;
+        mServiceProxy = depProv.createWebSocketServiceProxy(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        Log.e("STEO", "OnResume fraggle");
         mServiceProxy.bind();
     }
 
