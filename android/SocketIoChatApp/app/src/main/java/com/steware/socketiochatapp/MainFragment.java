@@ -18,6 +18,10 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     private TextView mMessages;
 
     public MainFragment() {
+
+        MyComponent comp = DaggerMyComponent.builder().myModule(new MyModule()).build();
+        DummDep dummDep = comp.provideDummDep();
+
     }
 
     public static MainFragment newInstance() {
@@ -28,13 +32,13 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mServiceProxy = new WebSocketServiceProxy(getActivity(), this);
+        mServiceProxy = new WebSocketServiceProxy(getActivity());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mServiceProxy.bind();
+        mServiceProxy.bind(this);
     }
 
     @Override

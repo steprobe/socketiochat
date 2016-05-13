@@ -13,13 +13,13 @@ public class WebSocketServiceProxy implements ServiceConnection {
     private WebSocketServiceCallback mCallback;
     private WebSocketService mService;
 
-    public WebSocketServiceProxy(Context context, WebSocketServiceCallback callback) {
+    public WebSocketServiceProxy(Context context) {
         mContext = context;
-        mCallback = callback;
     }
 
-    public void bind() {
+    public void bind(WebSocketServiceCallback callback) {
         Intent svcIntent = new Intent(mContext, WebSocketService.class);
+        mCallback = callback;
         mContext.bindService(svcIntent, this, Context.BIND_AUTO_CREATE);
     }
 
