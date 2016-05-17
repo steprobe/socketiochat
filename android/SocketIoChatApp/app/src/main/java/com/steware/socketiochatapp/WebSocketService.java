@@ -71,6 +71,7 @@ public class WebSocketService extends Service {
 
                 if (ex != null) {
                     ex.printStackTrace();
+                    notifyFailed();
                     return;
                 }
 
@@ -111,6 +112,17 @@ public class WebSocketService extends Service {
             public void run() {
                 for (WebSocketServiceCallback callback : mCallbacks) {
                     callback.onWebSocketConnected();
+                }
+            }
+        });
+    }
+
+    private void notifyFailed() {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                for (WebSocketServiceCallback callback : mCallbacks) {
+                    callback.onWebSocketConnectionFailed();
                 }
             }
         });

@@ -86,6 +86,11 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     }
 
     @Override
+    public void onWebSocketConnectionFailed() {
+        mMessages.append("\nConnected to socket.io chat service failed");
+    }
+
+    @Override
     public void onWebSocketDisconnected() {
 
     }
