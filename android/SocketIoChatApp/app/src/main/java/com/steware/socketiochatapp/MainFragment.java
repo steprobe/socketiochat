@@ -28,13 +28,13 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mServiceProxy = new WebSocketServiceProxy(getActivity(), this);
+        mServiceProxy = new WebSocketServiceProxy(getActivity());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mServiceProxy.bind();
+        mServiceProxy.bind(this);
     }
 
     @Override
