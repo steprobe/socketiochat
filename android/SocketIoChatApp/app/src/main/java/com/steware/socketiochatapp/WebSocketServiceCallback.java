@@ -12,5 +12,7 @@ public interface WebSocketServiceCallback {
 
     void onWebSocketConnected();
 
+    void onWebSocketConnectionFailed();
+
     void onWebSocketDisconnected();
 }
