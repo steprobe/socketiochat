@@ -12,7 +12,12 @@ import android.widget.TextView;
 
 import com.steoware.webscokettesting.R;
 
+import javax.inject.Inject;
+
 public class MainFragment extends Fragment implements WebSocketServiceCallback {
+
+    @Inject StringFactory mStringbo;
+    @Inject NumberFactory mNumbo;
 
     private WebSocketServiceProxy mServiceProxy;
     private TextView mMessages;
@@ -28,6 +33,10 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
+        ((MyApplication) getActivity().getApplication()).component().inject(
+                (MainActivity) getActivity());
+
         mServiceProxy = new WebSocketServiceProxy(getActivity());
     }
 
