@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.steoware.webscokettesting.R;
-
 public class MainFragment extends Fragment implements WebSocketServiceCallback {
 
     private WebSocketServiceProxy mServiceProxy;

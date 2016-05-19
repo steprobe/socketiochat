@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.steoware.webscokettesting.R;
-
 public class TestActivity extends AppCompatActivity implements DependencyProvider {
 
     public DependencyProvider dependencyProvider;
