@@ -1,6 +1,7 @@
 package com.steware.socketiochatapp;
 
 import android.app.Application;
+import android.support.v4.app.FragmentActivity;
 
 import javax.inject.Singleton;
 
@@ -13,7 +14,7 @@ public class MyApplication extends Application {
     @Singleton
     @Component(modules = { AndroidModule.class, CommonModule.class })
     public interface ApplicationComponent {
-        void inject(MainActivity mainActivity);
+        void inject(FragmentActivity mainActivity);
     }
 
     @Override

@@ -2,8 +2,6 @@ package com.steware.socketiochatapp;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.steoware.webscokettesting.R;
-
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -25,7 +23,7 @@ public class MainActivityTest {
     @Test
     public void checkConnection() {
         onView(withId(R.id.messages)).check(matches(withText(containsString("Connecting..."))));
-        onView(withId(R.id.messages)).check(matches(withText(containsString("Connected to socket.io chat service"))));
+        waitFor(onView(withId(R.id.messages)), matches(withText(containsString("Connected to socket.io chat service"))), 5000);
     }
 
     @Test

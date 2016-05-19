@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
-import com.steoware.webscokettesting.R;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DependencyProvider {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,5 +15,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.container, fraggle);
         transaction.commit();
+    }
+
+    @Override
+    public WebSocketServiceProxy createWebSocketServiceProxy() {
+        return new WebSocketServiceProxy(this);
     }
 }
