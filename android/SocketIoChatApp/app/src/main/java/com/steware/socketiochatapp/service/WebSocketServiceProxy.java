@@ -1,4 +1,4 @@
-package com.steware.socketiochatapp;
+package com.steware.socketiochatapp.service;
 
 import android.content.ComponentName;
 import android.content.Context;

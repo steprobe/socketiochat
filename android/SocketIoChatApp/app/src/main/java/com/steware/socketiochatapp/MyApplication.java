@@ -3,6 +3,9 @@ package com.steware.socketiochatapp;
 import android.app.Application;
 import android.support.v4.app.FragmentActivity;
 
+import com.steware.socketiochatapp.di.AndroidModule;
+import com.steware.socketiochatapp.di.CommonModule;
+
 import javax.inject.Singleton;
 
 import dagger.Component;

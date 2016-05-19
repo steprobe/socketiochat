@@ -1,4 +1,4 @@
-package com.steware.socketiochatapp;
+package com.steware.socketiochatapp.service;
 
 public interface WebSocketServiceCallback {
 

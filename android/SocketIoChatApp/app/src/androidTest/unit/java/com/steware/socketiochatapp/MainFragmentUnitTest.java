@@ -9,6 +9,11 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.steware.socketiochatapp.di.DependencyProvider;
+import com.steware.socketiochatapp.service.WebSocketServiceCallback;
+import com.steware.socketiochatapp.service.WebSocketServiceProxy;
+import com.steware.socketiochatapp.ui.MainFragment;
+import com.steware.socketiochatapp.ui.TestActivity;
 import com.steware.socketiochatapp.utils.UnitTests;
 
 import org.junit.After;

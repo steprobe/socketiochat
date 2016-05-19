@@ -1,8 +1,12 @@
-package com.steware.socketiochatapp;
+package com.steware.socketiochatapp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+
+import com.steware.socketiochatapp.di.DependencyProvider;
+import com.steware.socketiochatapp.R;
+import com.steware.socketiochatapp.service.WebSocketServiceProxy;
 
 public class MainActivity extends AppCompatActivity implements DependencyProvider {
 

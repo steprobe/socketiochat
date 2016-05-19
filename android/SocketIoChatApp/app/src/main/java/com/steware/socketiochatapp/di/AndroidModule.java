@@ -1,4 +1,7 @@
-package com.steware.socketiochatapp;
+package com.steware.socketiochatapp.di;
+
+import com.steware.socketiochatapp.MyApplication;
+import com.steware.socketiochatapp.StringFactory;
 
 import javax.inject.Singleton;
 

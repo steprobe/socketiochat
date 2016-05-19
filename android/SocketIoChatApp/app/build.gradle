@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.steware.webscokettesting"
+        applicationId "com.steware.socketiochatapp"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
@@ -26,9 +26,6 @@ android {
                     'src/androidTest/integration/java',
                     'src/androidTest/unit/java',
                     'src/androidTest/java']
-//            file('src/androidTest/integration/java')
-//            java.srcDir file('src/androidTest/system/java')
-//            java.srcDir file('src/androidTest/unit/java')
         }
     }
 }

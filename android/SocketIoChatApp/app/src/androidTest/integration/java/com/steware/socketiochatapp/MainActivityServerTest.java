@@ -2,6 +2,7 @@ package com.steware.socketiochatapp;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.steware.socketiochatapp.ui.MainActivity;
 import com.steware.socketiochatapp.utils.IntegrationTests;
 
 import org.junit.Rule;
