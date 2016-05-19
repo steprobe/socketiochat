@@ -7,19 +7,13 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.koushikdutta.async.http.AsyncHttpClient;
-import com.koushikdutta.async.http.socketio.Acknowledge;
-import com.koushikdutta.async.http.socketio.ConnectCallback;
-import com.koushikdutta.async.http.socketio.EventCallback;
-import com.koushikdutta.async.http.socketio.SocketIOClient;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WebSocketService extends Service {
+public class WebSocketService extends Service implements SocketIO.Callback {
 
     private static final String SOCKET_IO_SERVER = "http://10.8.1.118:3000";
     private static final String NEW_MESSAGE = "new-message";
@@ -27,14 +21,14 @@ public class WebSocketService extends Service {
 
     private WebSocketBinder mBinder = new WebSocketBinder();
     private final List<WebSocketServiceCallback> mCallbacks = new ArrayList<>();
-    private SocketIOClient mSocketClient;
+    private SocketIO mSocketClient = new SocketIOImpl();
 
     private Handler mHandler = new Handler();
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        connectToSocky();
+        mSocketClient.connect(SOCKET_IO_SERVER, this);
         return mBinder;
     }
 
@@ -46,46 +40,37 @@ public class WebSocketService extends Service {
 
     public void removeWebSocketServiceCallback(WebSocketServiceCallback webSocketServiceCallback) {
         mCallbacks.remove(webSocketServiceCallback);
+        if(mCallbacks.isEmpty()) {
+            mHandler.removeCallbacksAndMessages(null);
+        }
     }
 
     public void sendMessage(String message) {
-        if (mSocketClient != null) {
-            JSONArray array = new JSONArray();
-            array.put(message);
-            mSocketClient.emit(SEND_MESSAGE, array);
-        }
+        JSONArray array = new JSONArray();
+        array.put(message);
+        mSocketClient.emit(SEND_MESSAGE, array);
+    }
+
+    @Override
+    public void onConnectCompleted() {
+        notifyConnected();
+        mSocketClient.on(NEW_MESSAGE);
+    }
+
+    @Override
+    public void onConnectionFailed() {
+        notifyFailed();
+    }
+
+    @Override
+    public void onEvent(JSONArray argument) {
+        postNewMessage(argument);
     }
 
     public class WebSocketBinder extends Binder {
         WebSocketService getService() {
             return WebSocketService.this;
         }
-    }
-
-    private void connectToSocky() {
-
-        AsyncHttpClient client = AsyncHttpClient.getDefaultInstance();
-        SocketIOClient.connect(client, SOCKET_IO_SERVER, new ConnectCallback() {
-            @Override
-            public void onConnectCompleted(Exception ex, SocketIOClient client) {
-
-                if (ex != null) {
-                    ex.printStackTrace();
-                    notifyFailed();
-                    return;
-                }
-
-                mSocketClient = client;
-                notifyConnected();
-
-                client.on(NEW_MESSAGE, new EventCallback() {
-                    @Override
-                    public void onEvent(final JSONArray argument, Acknowledge acknowledge) {
-                        postNewMessage(argument);
-                    }
-                });
-            }
-        });
     }
 
     private void postNewMessage(final JSONArray newMessageJson) {
