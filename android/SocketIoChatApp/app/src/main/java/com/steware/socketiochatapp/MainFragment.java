@@ -37,7 +37,7 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("STEO", "OnResume fraggle");
+        Log.e("STEO", "OnResume fraggle + bindage");
         mServiceProxy.bind();
     }
 

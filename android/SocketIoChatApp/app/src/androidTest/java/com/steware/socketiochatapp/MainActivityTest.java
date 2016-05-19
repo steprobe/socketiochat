@@ -2,8 +2,6 @@ package com.steware.socketiochatapp;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.steoware.webscokettesting.R;
-
 import org.junit.Rule;
 import org.junit.Test;
 

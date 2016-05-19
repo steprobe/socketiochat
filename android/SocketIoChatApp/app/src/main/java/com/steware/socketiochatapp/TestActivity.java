@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class TestActivity extends AppCompatActivity implements DependencyProvider {
 
-    public DependencyProvider dependencyProvider;
+    public static DependencyProvider dependencyProvider;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
