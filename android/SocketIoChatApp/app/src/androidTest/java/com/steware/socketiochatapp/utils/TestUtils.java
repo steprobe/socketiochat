@@ -1,4 +1,4 @@
-package com.steware.socketiochatapp;
+package com.steware.socketiochatapp.utils;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;

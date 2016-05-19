@@ -9,7 +9,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.steware.socketiochatapp.markers.UnitTests;
+import com.steware.socketiochatapp.utils.UnitTests;
 
 import org.junit.After;
 import org.junit.Rule;

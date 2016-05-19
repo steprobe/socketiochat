@@ -2,7 +2,7 @@ package com.steware.socketiochatapp;
 
 import android.support.test.rule.ActivityTestRule;
 
-import com.steware.socketiochatapp.markers.IntegrationTests;
+import com.steware.socketiochatapp.utils.IntegrationTests;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.steware.socketiochatapp.TestUtils.waitFor;
+import static com.steware.socketiochatapp.utils.TestUtils.waitFor;
 import static org.hamcrest.CoreMatchers.containsString;
 
 @Category(IntegrationTests.class)

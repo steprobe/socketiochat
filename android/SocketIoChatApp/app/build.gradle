@@ -19,6 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        androidTest{
+            java.srcDirs = [
+                    'src/androidTest/integration/java',
+                    'src/androidTest/unit/java',
+                    'src/androidTest/java']
+//            file('src/androidTest/integration/java')
+//            java.srcDir file('src/androidTest/system/java')
+//            java.srcDir file('src/androidTest/unit/java')
+        }
+    }
 }
 
 dependencies {
@@ -47,4 +59,17 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.2'
     compile 'com.google.dagger:dagger:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
+}
+
+tasks.withType(Test) {
+    testLogging {
+        exceptionFormat "full"
+    }
+    afterTest { desc, result ->
+        println "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}
+
+allprojects {
+    tasks.withType(Test) { println it.name }
 }
