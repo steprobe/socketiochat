@@ -9,9 +9,12 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.steware.socketiochatapp.markers.UnitTests;
+
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.mock;
@@ -20,6 +23,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
+@Category(UnitTests.class)
 public class MainFragmentUnitTest {
 
     private static final String FRAGMENT_TAG = "testmainfragment";

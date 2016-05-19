@@ -2,8 +2,11 @@ package com.steware.socketiochatapp;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.steware.socketiochatapp.markers.SystemTests;
+
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -15,7 +18,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.steware.socketiochatapp.TestUtils.waitFor;
 import static org.hamcrest.CoreMatchers.containsString;
 
-public class MainActivityTest {
+@Category(SystemTests.class)
+public class MainActivitySystemTest {
 
     @Rule
     public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
