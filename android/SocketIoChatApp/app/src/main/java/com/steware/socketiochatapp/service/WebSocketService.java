@@ -7,11 +7,15 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.steware.socketiochatapp.MyApplication;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class WebSocketService extends Service implements SocketIO.Callback {
 
@@ -21,13 +25,14 @@ public class WebSocketService extends Service implements SocketIO.Callback {
 
     private WebSocketBinder mBinder = new WebSocketBinder();
     private final List<WebSocketServiceCallback> mCallbacks = new ArrayList<>();
-    private SocketIO mSocketClient = new SocketIOImpl();
+    @Inject SocketIO mSocketClient;
 
     private Handler mHandler = new Handler();
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        ((MyApplication)getApplication()).component().inject(this);
         mSocketClient.connect(SOCKET_IO_SERVER, this);
         return mBinder;
     }

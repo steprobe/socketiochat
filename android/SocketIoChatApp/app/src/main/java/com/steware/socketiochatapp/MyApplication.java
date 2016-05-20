@@ -1,10 +1,9 @@
 package com.steware.socketiochatapp;
 
 import android.app.Application;
-import android.support.v4.app.FragmentActivity;
+import android.app.Service;
 
-import com.steware.socketiochatapp.di.AndroidModule;
-import com.steware.socketiochatapp.di.CommonModule;
+import com.steware.socketiochatapp.di.SocketIOModule;
 
 import javax.inject.Singleton;
 
@@ -15,9 +14,9 @@ public class MyApplication extends Application {
     private ApplicationComponent mApplicationComponent;
 
     @Singleton
-    @Component(modules = { AndroidModule.class, CommonModule.class })
+    @Component(modules = { SocketIOModule.class })
     public interface ApplicationComponent {
-        void inject(FragmentActivity mainActivity);
+        void inject(Service service);
     }
 
     @Override
@@ -25,8 +24,7 @@ public class MyApplication extends Application {
         super.onCreate();
 
         mApplicationComponent = DaggerMyApplication_ApplicationComponent.builder()
-                .androidModule(new AndroidModule(this))
-                .commonModule(new CommonModule())
+                .socketIOModule(new SocketIOModule())
                 .build();
     }
 

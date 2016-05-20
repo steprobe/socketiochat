@@ -11,22 +11,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.steware.socketiochatapp.di.DependencyProvider;
-import com.steware.socketiochatapp.MyApplication;
-import com.steware.socketiochatapp.NumberFactory;
 import com.steware.socketiochatapp.R;
-import com.steware.socketiochatapp.StringFactory;
+import com.steware.socketiochatapp.di.DependencyProvider;
 import com.steware.socketiochatapp.service.WebSocketServiceCallback;
 import com.steware.socketiochatapp.service.WebSocketServiceProxy;
 
-import javax.inject.Inject;
-
 public class MainFragment extends Fragment implements WebSocketServiceCallback {
-
-    @Inject
-    StringFactory mStringbo;
-    @Inject
-    NumberFactory mNumbo;
 
     private WebSocketServiceProxy mServiceProxy;
     private TextView mMessages;
@@ -43,8 +33,6 @@ public class MainFragment extends Fragment implements WebSocketServiceCallback {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
-        ((MyApplication) getActivity().getApplication()).component().inject(getActivity());
 
         DependencyProvider depProv = (DependencyProvider)activity;
         mServiceProxy = depProv.createWebSocketServiceProxy();
